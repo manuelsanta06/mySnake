@@ -13,7 +13,7 @@ function drawSnk(){
         ctx.stroke();
     }
 }
-function scnUpdt(){
+function render(){
     ctx.clearRect(0,0,canv.width,canv.height);
     for(let a=1;a<dot.length;a++)clamp(a-1,a);
     drawSnk();
@@ -40,7 +40,7 @@ function gameLoop(timeStamp){
 
         update(deltaTime);
 
-        scnUpdt();
+        render();
     }
     requestAnimationFrame(gameLoop); //Llamar al próximo frame
 }
@@ -51,7 +51,7 @@ window.onload=()=>{
     
     ctx.clearRect(0,0,canv.width,canv.height);//eto limpia el canva
     ctx.fillStyle ="#FF00FF";
-    scnUpdt();
+    render();
     
     document.addEventListener('keydown',function(event){keys[event.keyCode]=true;});
     document.addEventListener('keyup',function(event){keys[event.keyCode]=false;});
