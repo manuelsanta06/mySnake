@@ -50,7 +50,7 @@ window.onload=()=>{
     ctx=canv.getContext("2d");
     
     ctx.clearRect(0,0,canv.width,canv.height);//eto limpia el canva
-    ctx.fillStyle ="#FF00FF";
+    ctx.fillStyle ="#FF0000";
     render();
     
     document.addEventListener('keydown',function(event){keys[event.keyCode]=true;});
