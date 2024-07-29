@@ -48,7 +48,6 @@ function update(deltaTime){
     if (keys[37])rot-=rad*5;   //flecha izquierda
     if (rot >= 2*Math.PI) rot -= 2*Math.PI;
     if (rot < 0) rot += 2*Math.PI;
-
     if (keys[77]) manzanas.push([random(canv.width-40)+20,random(canv.height-40)+20]);
     if (keys[76]){//agrega cola
         tamdib.splice(dot.length-2,0,10);
@@ -56,7 +55,6 @@ function update(deltaTime){
         for(let a=3; a < dot.length-1; a++)tamdib[a]=tamdib[2]-(tamdib[2]-tamdib[tamdib.length-1])/(tamdib.length-4)*(a-2);
     }
     for(let a=1; a < dot.length; a++)clamp(a-1,a);
-
     for(let a of manzanas){
         const nearestX=Math.max(a[0],Math.min(dot[0][0],a[0]+15));
         const nearestY=Math.max(a[1],Math.min(dot[0][1],a[1]+15));
@@ -86,6 +84,10 @@ window.onload=() =>{
     ctx=canv.getContext("2d");
     document.addEventListener('keydown',function (event){keys[event.keyCode]=true; });
     document.addEventListener('keyup',function (event){keys[event.keyCode]=false; });
+    canv.onclick=()=>{
+        if(window.event.clientX>canv.width/2+canv.getBoundingClientRect().x)rot+=rad*12;
+        else rot-=rad*12;
+    }
     
     for(let a=3; a < dot.length-1; a++)tamdib[a]=tamdib[2]-(tamdib[2]-tamdib[tamdib.length-1])/(tamdib.length-4)*(a-2);
     requestAnimationFrame(gameLoop);
